@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7a1fff" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="whiteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#d4d4d8" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Stylized O Loop -->
+  <path d="M64 12 C35 12, 18 35, 18 64 C18 93, 35 116, 64 116 C93 116, 110 93, 110 64 C110 35, 93 12, 64 12 Z M64 26 C84 26, 96 42, 96 64 C96 86, 84 102, 64 102 C44 102, 32 86, 32 64 C32 42, 44 26, 64 26 Z" 
+        fill="url(#whiteGrad)" />
+        
+  <!-- Inner Diagonal Purple Growth Indicator / Compass Needle -->
+  <path d="M38 90 L88 48 L76 42 L34 82 Z" fill="url(#purpleGrad)" filter="url(#glow)" />
+</svg>
