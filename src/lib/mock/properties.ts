@@ -5,7 +5,7 @@ import { mockImages } from "./images";
 export const mockUrbanProperties: UrbanProperty[] = [
   {
     slug: "cobertura-jardim-dos-estados",
-    code: "MRQ-U101",
+    code: "ORM-U101",
     title: "Cobertura duplex no Jardim dos Estados",
     type: "Cobertura",
     neighborhood: "Jardim dos Estados",
@@ -21,7 +21,7 @@ export const mockUrbanProperties: UrbanProperty[] = [
   },
   {
     slug: "casa-condominio-alphaville-cg",
-    code: "MRQ-U102",
+    code: "ORM-U102",
     title: "Casa em condomínio fechado",
     type: "Casa em condomínio",
     neighborhood: "Alphaville Campo Grande",
@@ -37,7 +37,7 @@ export const mockUrbanProperties: UrbanProperty[] = [
   },
   {
     slug: "apartamento-centro-cg",
-    code: "MRQ-U103",
+    code: "ORM-U103",
     title: "Apartamento 3 suítes no Centro",
     type: "Apartamento",
     neighborhood: "Centro",

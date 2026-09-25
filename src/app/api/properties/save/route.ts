@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       let finalCode = prop.code?.trim().toUpperCase();
       if (!finalCode) {
         const { data: existingRows } = await supabase.from("urban_properties").select("code");
-        finalCode = getNextSequentialCode(existingRows || [], "MRQ-U", 101);
+        finalCode = getNextSequentialCode(existingRows || [], "ORM-U", 101);
       } else {
         const { data: conflict } = await supabase
           .from("urban_properties")
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
 
         if (conflict && conflict.slug !== prop.slug) {
           const { data: allRows } = await supabase.from("urban_properties").select("code");
-          finalCode = getNextSequentialCode(allRows || [], "MRQ-U", 101);
+          finalCode = getNextSequentialCode(allRows || [], "ORM-U", 101);
         }
       }
       
@@ -248,7 +248,7 @@ export async function POST(req: Request) {
       let finalCode = rural.code?.trim().toUpperCase();
       if (!finalCode) {
         const { data: existingRows } = await supabase.from("rural_properties").select("code");
-        finalCode = getNextSequentialCode(existingRows || [], "MRQ-R", 201);
+        finalCode = getNextSequentialCode(existingRows || [], "ORM-R", 201);
       } else {
         const { data: conflict } = await supabase
           .from("rural_properties")
@@ -258,7 +258,7 @@ export async function POST(req: Request) {
 
         if (conflict && conflict.slug !== rural.slug) {
           const { data: allRows } = await supabase.from("rural_properties").select("code");
-          finalCode = getNextSequentialCode(allRows || [], "MRQ-R", 201);
+          finalCode = getNextSequentialCode(allRows || [], "ORM-R", 201);
         }
       }
 

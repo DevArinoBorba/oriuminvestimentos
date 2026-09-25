@@ -154,7 +154,7 @@ export function UrbanCatalogView({
         <FilterBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
-          searchPlaceholder="Buscar por condomínio, bairro ou código (ex: MRQ-U101)..."
+          searchPlaceholder="Buscar por condomínio, bairro ou código (ex: ORM-U101)..."
           selects={[
             {
               id: "filter-type",

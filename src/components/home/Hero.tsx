@@ -32,7 +32,7 @@ export function Hero({ banner }: HeroProps) {
           </h1>
           <p className="max-w-xl text-[16px] leading-relaxed text-offwhite/80 md:text-[17px]">
             {banner?.subtitle ||
-              "Curadoria imobiliária, investimentos no litoral catarinense e oportunidades urbanas e rurais selecionadas pela ÓRION."}
+              "Curadoria imobiliária, investimentos no litoral catarinense e oportunidades urbanas e rurais selecionadas pela ORIUM."}
           </p>
           {banner?.ctaText && banner?.ctaLink && (
             <Link

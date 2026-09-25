@@ -16,9 +16,9 @@ export function AboutSection() {
       <Container className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
         <div className="flex flex-col gap-6">
           <SectionHeading
-            eyebrow="Sobre a Órion"
+            eyebrow="Sobre a ORIUM"
             title="Curadoria imobiliária com visão de investimento"
-            description="A Órion Investimentos atua com inteligência de mercado e uma abordagem consultiva para conectar clientes a oportunidades imobiliárias criteriosamente selecionadas. Nossa atuação reúne imóveis, empreendimentos, investimentos, avaliação, regularização e propriedades rurais, com presença estratégica entre Santa Catarina, Mato Grosso do Sul e Mato Grosso."
+            description="A ORIUM Investimentos atua com inteligência de mercado e uma abordagem consultiva para conectar clientes a oportunidades imobiliárias criteriosamente selecionadas. Nossa atuação reúne imóveis, empreendimentos, investimentos, avaliação, regularização e propriedades rurais, com presença estratégica entre Santa Catarina, Mato Grosso do Sul e Mato Grosso."
           />
 
           <ul className="flex flex-col gap-2 border-l border-terracota/40 pl-4">
@@ -30,13 +30,13 @@ export function AboutSection() {
           </ul>
 
           <ButtonLink href="/sobre" variant="secondary" className="w-fit">
-            Conhecer a Órion
+            Conhecer a ORIUM
           </ButtonLink>
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
           <Image
             src={mockImages.houseExterior3}
-            alt="Arquitetura contemporânea representando a curadoria Órion Investimentos"
+            alt="Arquitetura contemporânea representando a curadoria ORIUM Investimentos"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"

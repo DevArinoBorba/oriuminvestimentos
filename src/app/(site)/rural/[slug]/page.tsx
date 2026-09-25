@@ -8,12 +8,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
 
-export function generateStaticParams() {
-  return mockRuralProperties.map((p) => ({
-    slug: p.slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -22,7 +16,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const prop = await fetchRuralPropertyBySlug(slug);
 
-  if (!prop) return { title: "Propriedade Rural | Órion" };
+  if (!prop) return { title: "Propriedade Rural | ORIUM" };
 
   const activities = prop.activity.map((a) => ruralActivityLabels[a]).join(", ");
 

@@ -8,10 +8,6 @@ export const revalidate = 0;
 
 const validCities: ScCity[] = ["porto-belo", "itapema", "balneario-camboriu"];
 
-export function generateStaticParams() {
-  return validCities.map((city) => ({ city }));
-}
-
 export default async function CityEmpreendimentosPage({
   params,
 }: {

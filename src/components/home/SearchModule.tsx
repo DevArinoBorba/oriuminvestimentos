@@ -50,8 +50,8 @@ export function SearchModule() {
               setFields({});
             }}
             className={cn(
-              "focus-ring rounded-sm px-4 py-2 text-[13px] font-medium uppercase tracking-[0.06em] transition-colors",
-              category === c.id ? "bg-mineral text-offwhite" : "text-graphite/60 hover:text-graphite",
+              "focus-ring rounded-sm px-4 py-2 text-[13px] font-semibold uppercase tracking-[0.06em] transition-all cursor-pointer",
+              category === c.id ? "bg-primary text-white shadow-xs" : "text-graphite/70 hover:text-primary",
             )}
           >
             {c.label}
@@ -158,7 +158,7 @@ export function SearchModule() {
         <button
           type="button"
           onClick={handleSearch}
-          className="focus-ring flex h-12 items-center justify-center gap-2 rounded-sm bg-terracota px-4 text-[13px] font-medium uppercase tracking-[0.1em] text-offwhite transition-colors hover:bg-terracota-light"
+          className="focus-ring btn-orium h-12 items-center justify-center gap-2 px-6 text-[13px] font-semibold uppercase tracking-[0.1em] text-white cursor-pointer"
         >
           <Search className="h-4 w-4" />
           Buscar

@@ -26,10 +26,11 @@ export function SectionHeading({
       {eyebrow ? (
         <span
           className={cn(
-            "text-[12px] font-medium uppercase tracking-[0.2em]",
-            light ? "text-areia" : "text-terracota",
+            "text-[12px] font-bold uppercase tracking-[0.22em] inline-flex items-center gap-1.5",
+            light ? "text-purple-300" : "text-primary",
           )}
         >
+          <span className="text-[11px] font-black">↗</span>
           {eyebrow}
         </span>
       ) : null}

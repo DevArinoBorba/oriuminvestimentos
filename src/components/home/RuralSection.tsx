@@ -35,7 +35,7 @@ export function RuralSection({ banner }: RuralSectionProps) {
   }, [setRuralProperties]);
 
   return (
-    <section className="bg-mineral py-24 text-offwhite">
+    <section className="bg-white py-24 text-graphite border-y border-areia/50">
       <Container className="flex flex-col gap-12">
         {banner?.imageUrl && (
           <div className="relative aspect-[21/9] overflow-hidden rounded-sm">
@@ -46,7 +46,7 @@ export function RuralSection({ banner }: RuralSectionProps) {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-mineral/90 via-mineral/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-graphite/60 via-transparent to-transparent" />
           </div>
         )}
 
@@ -58,9 +58,8 @@ export function RuralSection({ banner }: RuralSectionProps) {
               banner?.subtitle ||
               "Fazendas e propriedades rurais com dados técnicos completos para decisões de investimento."
             }
-            light
           />
-          <ButtonLink href={banner?.ctaLink || "/rural"} variant="outline-light" className="shrink-0">
+          <ButtonLink href={banner?.ctaLink || "/rural"} variant="secondary" className="shrink-0">
             {banner?.ctaText || "Ver propriedades rurais"}
           </ButtonLink>
         </div>
@@ -84,11 +83,11 @@ export function RuralSection({ banner }: RuralSectionProps) {
                 <span className="text-[11px] uppercase tracking-[0.1em] text-areia">
                   {property.municipality}, {property.state}
                 </span>
-                <span className="flex items-center gap-2 font-display text-2xl">
+                <span className="flex items-center gap-2 font-display text-2xl text-white">
                   {property.title}
                   <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>
-                <div className="flex items-center gap-4 text-[13px] text-offwhite/80">
+                <div className="flex items-center gap-4 text-[13px] text-white/90">
                   <span className="inline-flex items-center gap-1.5">
                     <LandPlot className="h-4 w-4" />
                     {property.totalHectares.toLocaleString("pt-BR")} ha

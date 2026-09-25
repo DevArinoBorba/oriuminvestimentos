@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // output: standalone é exclusivo para builds Docker/VPS locais, não deve rodar na Vercel
+  ...(process.env.VERCEL ? {} : { output: "standalone" }),
   images: {
     unoptimized: true,
   },

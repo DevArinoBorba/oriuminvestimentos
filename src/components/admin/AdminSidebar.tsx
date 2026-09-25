@@ -11,15 +11,18 @@ export function AdminSidebar() {
 
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-offwhite/10 bg-graphite text-offwhite lg:flex">
-      <div className="flex items-center gap-3 border-b border-offwhite/10 px-6 py-6">
+      <div className="flex items-center gap-3 border-b border-offwhite/10 px-6 py-5">
         <Image
-          src="/brand/monarq-symbol.png"
-          alt="Órion"
+          src="/brand/orium-symbol.svg"
+          alt="ORIUM"
           width={32}
           height={32}
           className="h-8 w-8 object-contain"
         />
-        <span className="text-[12px] font-medium uppercase tracking-[0.15em] text-areia">Admin</span>
+        <div className="flex flex-col">
+          <span className="font-heading text-sm font-bold tracking-[0.12em] text-white">ORIUM</span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-areia/80">Painel Admin</span>
+        </div>
       </div>
 
       <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">

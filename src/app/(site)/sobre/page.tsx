@@ -25,7 +25,7 @@ export default function SobrePage() {
         <Breadcrumb
           items={[
             { label: "Início", href: "/" },
-            { label: "Sobre a Órion" },
+            { label: "Sobre a ORIUM" },
           ]}
         />
 
@@ -40,7 +40,7 @@ export default function SobrePage() {
                 Patrimônio que permanece. Inteligência de mercado.
               </h1>
               <p className="text-base md:text-lg text-graphite/80 leading-relaxed">
-                A <strong>Órion Investimentos</strong> nasceu para transformar a experiência
+                A <strong>ORIUM Investimentos</strong> nasceu para transformar a experiência
                 imobiliária de alto padrão em uma jornada de precisão técnica, segurança jurídica e visão estratégica
                 de longo prazo.
               </p>
@@ -53,7 +53,7 @@ export default function SobrePage() {
               <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg">
                 <Image
                   src={mockImages.modernHouse}
-                  alt="Sede e arquitetura contemporânea Órion"
+                  alt="Sede e arquitetura contemporânea ORIUM"
                   fill
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"
@@ -197,7 +197,7 @@ export default function SobrePage() {
               Valores Inegociáveis
             </p>
             <h2 className="font-display text-3xl md:text-4xl text-graphite">
-              A Conduta Órion
+              A Conduta ORIUM
             </h2>
           </div>
 

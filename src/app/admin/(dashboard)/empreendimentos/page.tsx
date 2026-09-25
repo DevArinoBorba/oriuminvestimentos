@@ -85,7 +85,7 @@ export default function AdminEmpreendimentosPage() {
     gallery: ImageData[];
     videos: VideoData[];
   }>({
-    code: "MRQ-SC101",
+    code: "ORM-SC101",
     name: "",
     city: "porto-belo",
     neighborhood: "Perequê",
@@ -119,7 +119,7 @@ export default function AdminEmpreendimentosPage() {
   };
 
   const handleCopyShortLink = (codeOrSlug: string) => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.monarqinvest.com.br";
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.oriuminvestimentos.com.br";
     const shortUrl = `${origin}/i/${codeOrSlug}`;
     navigator.clipboard.writeText(shortUrl);
     showToast(`✓ Link curto copiado: ${shortUrl}`);
@@ -205,7 +205,7 @@ export default function AdminEmpreendimentosPage() {
 
   const handleOpenCreate = () => {
     setEditingSlug(null);
-    const nextCode = getNextSequentialCode(items, "MRQ-SC", 101);
+    const nextCode = getNextSequentialCode(items, "ORM-SC", 101);
     setFormData({
       code: nextCode,
       name: "",
@@ -239,7 +239,7 @@ export default function AdminEmpreendimentosPage() {
   const handleOpenEdit = (dev: Development) => {
     setEditingSlug(dev.slug);
     setFormData({
-      code: (dev as any).code || getNextSequentialCode(items, "MRQ-SC", 101),
+      code: (dev as any).code || getNextSequentialCode(items, "ORM-SC", 101),
       name: dev.name,
       city: dev.city,
       neighborhood: dev.neighborhood || "Perequê",
@@ -294,7 +294,7 @@ export default function AdminEmpreendimentosPage() {
       let updated: Development[];
       let code = formData.code.trim().toUpperCase();
       if (!code || items.some((it: any) => it.code?.toUpperCase() === code && it.slug !== editingSlug)) {
-        code = getNextSequentialCode(items, "MRQ-SC", 101);
+        code = getNextSequentialCode(items, "ORM-SC", 101);
       }
 
       // Configuração condicional de Dormitórios (Opcional)
@@ -511,7 +511,7 @@ export default function AdminEmpreendimentosPage() {
             </thead>
             <tbody className="divide-y divide-areia/30">
               {filteredItems.map((item, idx) => {
-                const itemCode = (item as any).code || `MRQ-SC${100 + idx + 1}`;
+                const itemCode = (item as any).code || `ORM-SC${100 + idx + 1}`;
 
                 return (
                   <tr key={item.slug} className="hover:bg-offwhite/30 transition-colors">
@@ -669,7 +669,7 @@ export default function AdminEmpreendimentosPage() {
                   <input
                     type="text"
                     required
-                    placeholder="Ex: MRQ-SC101"
+                    placeholder="Ex: ORM-SC101"
                     value={formData.code}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
                     className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite font-mono uppercase font-semibold"

@@ -13,7 +13,7 @@ export function EditorialSection() {
           <SectionHeading
             eyebrow="Inteligência imobiliária"
             title="Conteúdo para decisões melhores"
-            description="Análises de mercado, guias práticos e panoramas regionais assinados pela Órion Investimentos."
+            description="Análises de mercado, guias práticos e panoramas regionais assinados pela ORIUM Investimentos."
           />
           <ButtonLink href="/conteudo" variant="ghost" className="shrink-0 px-0">
             Ver todo o conteúdo

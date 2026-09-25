@@ -624,7 +624,7 @@ export async function deleteRuralPropertyFromDb(slug: string): Promise<boolean> 
 }
 
 /* =========================================================================
-   UNIVERSAL SHORT LINK RESOLVER (MRQ Code / Slug)
+   UNIVERSAL SHORT LINK RESOLVER (ORM Code / Slug)
    ========================================================================= */
 
 export async function resolveShortCode(codeOrSlug: string): Promise<string | null> {
@@ -648,12 +648,16 @@ export async function resolveShortCode(codeOrSlug: string): Promise<string | nul
     return `/rural/${rural.slug}`;
   }
 
-  // 4. Fallback se o código digitado for numérico puro (ex: '102' -> busca por 'MRQ-U102' ou 'MRQ-R102')
+  // 4. Fallback se o código digitado for numérico puro (ex: '102' -> busca por 'ORM-U102' ou 'ORM-R102')
   if (/^\d+$/.test(code)) {
-    const tryUrban = await fetchUrbanPropertyBySlug(`MRQ-U${code}`);
+    const tryUrban =
+      (await fetchUrbanPropertyBySlug(`ORM-U${code}`)) ||
+      (await fetchUrbanPropertyBySlug(`MRQ-U${code}`));
     if (tryUrban) return `/imoveis/campo-grande/${tryUrban.slug}`;
 
-    const tryRural = await fetchRuralPropertyBySlug(`MRQ-R${code}`);
+    const tryRural =
+      (await fetchRuralPropertyBySlug(`ORM-R${code}`)) ||
+      (await fetchRuralPropertyBySlug(`MRQ-R${code}`));
     if (tryRural) return `/rural/${tryRural.slug}`;
   }
 

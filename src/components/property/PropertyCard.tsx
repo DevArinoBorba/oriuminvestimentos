@@ -75,7 +75,7 @@ export function PropertyCard({
           <div>
             <p className="text-[12px] uppercase tracking-[0.1em] text-graphite/70">{location}</p>
             <Link href={href} className="focus-ring">
-              <h3 className="font-display text-lg leading-snug text-graphite group-hover:text-mineral transition-colors">
+              <h3 className="font-display text-lg leading-snug text-graphite group-hover:text-primary transition-colors">
                 {title}
               </h3>
             </Link>
@@ -86,13 +86,13 @@ export function PropertyCard({
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-graphite/70">
           {specs.map((spec, i) => (
             <span key={i} className="inline-flex items-center gap-1.5">
-              <spec.icon className="h-4 w-4 text-mineral" />
+              <spec.icon className="h-4 w-4 text-primary" />
               {spec.label}
             </span>
           ))}
         </div>
 
-        <p className="pt-1 text-[15px] font-medium text-mineral">
+        <p className="pt-1 text-[16px] font-bold text-primary">
           {price ? formatBRL(price) : "Consulte valores"}
         </p>
       </div>

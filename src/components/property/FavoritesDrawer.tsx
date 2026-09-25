@@ -27,7 +27,7 @@ export function FavoritesDrawer() {
   if (!isDrawerOpen) return null;
 
   // Cria mensagem para WhatsApp com todos os imóveis salvos
-  const whatsappMessage = `Olá! Salvei os seguintes imóveis na Órion Investimentos e gostaria de mais informações:\n${favorites
+  const whatsappMessage = `Olá! Salvei os seguintes imóveis na ORIUM Investimentos e gostaria de mais informações:\n${favorites
     .map(
       (f, i) =>
         `${i + 1}. ${f.title} (${f.location}) - ${

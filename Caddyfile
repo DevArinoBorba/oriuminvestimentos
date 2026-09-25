@@ -1,13 +1,13 @@
 {
     # Email para notificações do Let's Encrypt sobre certificados SSL
-    email {$ACME_EMAIL:contatomonarqimoveis@gmail.com}
+    email {$ACME_EMAIL:contato@oriuminvestimentos.com.br}
 }
 
-www.monarqinvest.com.br {
-    redir https://monarqinvest.com.br{uri} permanent
+www.oriuminvestimentos.com.br {
+    redir https://oriuminvestimentos.com.br{uri} permanent
 }
 
-{$DOMAIN:monarqinvest.com.br} {
+{$DOMAIN:oriuminvestimentos.com.br} {
     # Compressão automática gzip/zstd
     encode gzip zstd
 
@@ -23,5 +23,5 @@ www.monarqinvest.com.br {
 }
 
 http://143.95.166.167 {
-    redir https://monarqinvest.com.br{uri} permanent
+    redir https://oriuminvestimentos.com.br{uri} permanent
 }

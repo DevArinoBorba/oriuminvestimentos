@@ -1,4 +1,4 @@
-export const SUPABASE_COOKIE_NAME = "sb-monarqinvest-auth-token";
+export const SUPABASE_COOKIE_NAME = "sb-oriuminvest-auth-token";
 
 export const SUPABASE_URL =
   typeof window === "undefined" && process.env.INTERNAL_SUPABASE_URL

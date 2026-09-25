@@ -144,7 +144,7 @@ export default function AdminImoveisPage() {
     videos: VideoData[];
   }>({
     state: "SC",
-    code: "MRQ-U101",
+    code: "ORM-U101",
     scCity: "porto-belo",
     cityMS: "Campo Grande",
     neighborhood: "Perequê",
@@ -176,7 +176,7 @@ export default function AdminImoveisPage() {
     const scList: UnifiedPropertyItem[] = devItems.map((dev, idx) => ({
       id: `dev-${dev.slug}`,
       slug: dev.slug,
-      code: (dev as any).code || `MRQ-SC${100 + idx + 1}`,
+      code: (dev as any).code || `ORM-SC${100 + idx + 1}`,
       state: "SC",
       stateLabel: "Santa Catarina",
       city: dev.cityLabel,
@@ -207,7 +207,7 @@ export default function AdminImoveisPage() {
     const msList: UnifiedPropertyItem[] = urbanItems.map((urban, idx) => ({
       id: `urban-${urban.slug}`,
       slug: urban.slug,
-      code: urban.code || `MRQ-U${100 + idx + 1}`,
+      code: urban.code || `ORM-U${100 + idx + 1}`,
       state: "MS",
       stateLabel: "Mato Grosso do Sul",
       city: "Campo Grande",
@@ -270,7 +270,7 @@ export default function AdminImoveisPage() {
   };
 
   const handleCopyShortLink = (code: string) => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.monarqinvest.com.br";
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.oriuminvestimentos.com.br";
     const shortUrl = `${origin}/i/${code}`;
     navigator.clipboard.writeText(shortUrl);
     showToast(`✓ Link curto copiado: ${shortUrl}`);
@@ -345,8 +345,8 @@ export default function AdminImoveisPage() {
     const selectedState = preselectedState || (stateFilter === "MS" ? "MS" : "SC");
     const nextCode =
       selectedState === "SC"
-        ? getNextSequentialCode(devItems, "MRQ-SC", 101)
-        : getNextSequentialCode(urbanItems, "MRQ-U", 101);
+        ? getNextSequentialCode(devItems, "ORM-SC", 101)
+        : getNextSequentialCode(urbanItems, "ORM-U", 101);
 
     setEditingItem(null);
     setFormData({
@@ -502,7 +502,7 @@ export default function AdminImoveisPage() {
         } else {
           let code = formData.code.trim().toUpperCase();
           if (!code || devItems.some((it: any) => it.code?.toUpperCase() === code)) {
-            code = getNextSequentialCode(devItems, "MRQ-SC", 101);
+            code = getNextSequentialCode(devItems, "ORM-SC", 101);
           }
 
           const baseBadges: PropertyBadge[] = ["lancamento"];
@@ -600,7 +600,7 @@ export default function AdminImoveisPage() {
         } else {
           let code = formData.code.trim().toUpperCase();
           if (!code || urbanItems.some((it) => it.code?.toUpperCase() === code)) {
-            code = getNextSequentialCode(urbanItems, "MRQ-U", 101);
+            code = getNextSequentialCode(urbanItems, "ORM-U", 101);
           }
 
           const baseBadges: PropertyBadge[] = ["novo"];
@@ -1030,7 +1030,7 @@ export default function AdminImoveisPage() {
                   <input
                     type="text"
                     required
-                    placeholder="Ex: MRQ-U101"
+                    placeholder="Ex: ORM-U101"
                     value={formData.code}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
                     className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite font-mono uppercase font-semibold"

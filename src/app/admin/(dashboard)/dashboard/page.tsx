@@ -80,7 +80,7 @@ export default async function AdminDashboardPage() {
             Visão Geral Executiva
           </span>
           <h1 className="font-display text-2xl md:text-3xl text-graphite font-normal">
-            Dashboard Órion Investimentos
+            Dashboard ORIUM Investimentos
           </h1>
           <p className="text-xs md:text-sm text-graphite/60 mt-0.5">
             Monitoramento em tempo real do portfólio, leads e desempenho comercial.

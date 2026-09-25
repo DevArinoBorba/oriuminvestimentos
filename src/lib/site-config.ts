@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "ÓRION Investimentos",
+  name: "ORIUM Investimentos",
   tagline: "Construímos. Avaliamos. Vendemos. Regularizamos.",
   secondaryTagline: "Apoio jurídico especializado.",
   manifesto: "INTELIGÊNCIA DE MERCADO. PATRIMÔNIO QUE PERMANECE.",
@@ -8,18 +8,18 @@ export const siteConfig = {
     "Av. Afonso Pena, 1.897 – 4° Andar – Edifício Executive Center, Campo Grande - MS",
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5567982133789",
   whatsappDisplay: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || "(67) 98213-3789",
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@orioninvestimentos.com.br",
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@oriuminvestimentos.com.br",
   contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "(47) 99976-1982",
   phoneScDisplay: "(47) 99976-1982",
   phoneMsDisplay: "(67) 98213-3789",
   cnpj: process.env.NEXT_PUBLIC_CNPJ || "65.640.045/0001-76",
   instagramUrl:
     process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
-    "https://www.instagram.com/orioninvestimentos?igsh=ZmFnajlia2h2NDRx&igsi=ZmFnajlia2h2NDRx",
-  instagramHandle: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "@orioninvestimentos",
+    "https://www.instagram.com/oriuminvestimentos",
+  instagramHandle: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "@oriuminvestimentos",
   facebookUrl:
     process.env.NEXT_PUBLIC_FACEBOOK_URL ||
-    "https://www.facebook.com/profile.php?id=61593460760067",
+    "https://www.facebook.com/oriuminvestimentos",
 };
 
 export function buildWhatsappUrl(message: string) {

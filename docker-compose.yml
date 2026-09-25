@@ -2,7 +2,7 @@ services:
   # Servidor Web Caddy com SSL Automático Let's Encrypt
   caddy:
     image: caddy:2-alpine
-    container_name: monarq-caddy
+    container_name: orium-caddy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -35,7 +35,7 @@ services:
         NEXT_PUBLIC_WHATSAPP_DISPLAY: ${NEXT_PUBLIC_WHATSAPP_DISPLAY:-}
         NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-}
         NEXT_PUBLIC_CONTACT_PHONE: ${NEXT_PUBLIC_CONTACT_PHONE:-}
-    container_name: monarq-app
+    container_name: orium-app
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -45,8 +45,8 @@ services:
       - SUPABASE_SERVICE_ROLE_KEY=${SERVICE_ROLE_KEY}
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost}
     extra_hosts:
-      - "monarqinvest.com.br:host-gateway"
-      - "www.monarqinvest.com.br:host-gateway"
+      - "oriuminvestimentos.com.br:host-gateway"
+      - "www.oriuminvestimentos.com.br:host-gateway"
     depends_on:
       - kong
       - db
@@ -58,7 +58,7 @@ services:
   # API Gateway Kong (Supabase Lite)
   kong:
     image: kong:2.8.1-alpine
-    container_name: monarq-kong
+    container_name: orium-kong
     restart: unless-stopped
     environment:
       KONG_DATABASE: "off"
@@ -81,7 +81,7 @@ services:
   # Supabase GoTrue (Autenticação JWT)
   auth:
     image: supabase/gotrue:v2.164.0
-    container_name: monarq-auth
+    container_name: orium-auth
     restart: unless-stopped
     environment:
       GOTRUE_API_HOST: 0.0.0.0
@@ -107,7 +107,7 @@ services:
   # PostgREST (API REST Automática do Postgres)
   rest:
     image: postgrest/postgrest:v12.2.0
-    container_name: monarq-rest
+    container_name: orium-rest
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-postgres}
@@ -125,7 +125,7 @@ services:
   # Supabase Storage API (Uploads de Fotos de Imóveis no Disco NVMe)
   storage:
     image: supabase/storage-api:v1.11.1
-    container_name: monarq-storage
+    container_name: orium-storage
     restart: unless-stopped
     environment:
       ANON_KEY: ${ANON_KEY}
@@ -153,7 +153,7 @@ services:
   # Banco de Dados PostgreSQL (Otimizado para baixo uso de RAM)
   db:
     image: supabase/postgres:15.8.1.085
-    container_name: monarq-db
+    container_name: orium-db
     restart: unless-stopped
     command:
       - postgres

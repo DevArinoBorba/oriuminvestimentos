@@ -80,7 +80,7 @@ export default function VendaSeuImovelPage() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-md bg-areia/40">
                 <Image
                   src={mockImages.livingRoom3}
-                  alt="Living de alto padrão representando a curadoria da Órion Investimentos"
+                  alt="Living de alto padrão representando a curadoria da ORIUM Investimentos"
                   fill
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"

@@ -101,7 +101,7 @@ export default function AdminRuralPage() {
   };
 
   const handleCopyShortLink = (code: string) => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.monarqinvest.com.br";
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.oriuminvestimentos.com.br";
     const shortUrl = `${origin}/i/${code}`;
     navigator.clipboard.writeText(shortUrl);
     showToast(`✓ Link curto copiado: ${shortUrl}`);
@@ -186,7 +186,7 @@ export default function AdminRuralPage() {
 
   const handleOpenCreate = () => {
     setEditingSlug(null);
-    const nextCode = getNextSequentialCode(items, "MRQ-R", 201);
+    const nextCode = getNextSequentialCode(items, "ORM-R", 201);
     setFormData({
       code: nextCode,
       title: "",
@@ -211,7 +211,7 @@ export default function AdminRuralPage() {
   const handleOpenEdit = (prop: RuralProperty) => {
     setEditingSlug(prop.slug);
     setFormData({
-      code: prop.code || getNextSequentialCode(items, "MRQ-R", 201),
+      code: prop.code || getNextSequentialCode(items, "ORM-R", 201),
       title: prop.title,
       state: (prop.state as RuralState) || "MS",
       municipality: prop.municipality,
@@ -245,13 +245,13 @@ export default function AdminRuralPage() {
       
       let code = formData.code.trim().toUpperCase();
       if (!code) {
-        code = getNextSequentialCode(items, "MRQ-R", 201);
+        code = getNextSequentialCode(items, "ORM-R", 201);
       } else {
         const isDuplicate = items.some(
           (it) => it.code?.toUpperCase() === code && it.slug !== editingSlug
         );
         if (isDuplicate) {
-          code = getNextSequentialCode(items, "MRQ-R", 201);
+          code = getNextSequentialCode(items, "ORM-R", 201);
         }
       }
 
@@ -413,7 +413,7 @@ export default function AdminRuralPage() {
           <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-graphite/40" />
           <input
             type="text"
-            placeholder="Buscar por nome da fazenda, município ou código (ex: MRQ-R201)..."
+            placeholder="Buscar por nome da fazenda, município ou código (ex: ORM-R201)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 py-1.5 pl-9 pr-3 text-xs text-graphite placeholder:text-graphite/40 transition-colors focus:border-mineral focus:bg-white"
@@ -622,7 +622,7 @@ export default function AdminRuralPage() {
                   <input
                     type="text"
                     required
-                    placeholder="Ex: MRQ-R201"
+                    placeholder="Ex: ORM-R201"
                     value={formData.code}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
                     className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite font-mono uppercase font-semibold"

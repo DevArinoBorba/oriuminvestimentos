@@ -5,7 +5,7 @@ import { mockImages } from "./images";
 export const mockRuralProperties: RuralProperty[] = [
   {
     slug: "fazenda-boa-vista-ms",
-    code: "MRQ-R201",
+    code: "ORM-R201",
     title: "Fazenda Boa Vista",
     type: "fazenda",
     state: "MS",
@@ -20,7 +20,7 @@ export const mockRuralProperties: RuralProperty[] = [
   },
   {
     slug: "fazenda-santa-luzia-mt",
-    code: "MRQ-R202",
+    code: "ORM-R202",
     title: "Fazenda Santa Luzia",
     type: "fazenda",
     state: "MT",
@@ -35,7 +35,7 @@ export const mockRuralProperties: RuralProperty[] = [
   },
   {
     slug: "arrendamento-fazenda-pioneira-ms",
-    code: "MRQ-R203",
+    code: "ORM-R203",
     title: "Fazenda Pioneira (Arrendamento Agrícola)",
     type: "fazenda",
     state: "MS",

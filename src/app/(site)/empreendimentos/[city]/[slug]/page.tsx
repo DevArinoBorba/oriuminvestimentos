@@ -7,13 +7,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
 
-export function generateStaticParams() {
-  return mockDevelopments.map((dev) => ({
-    city: dev.city,
-    slug: dev.slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -22,13 +15,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const dev = await fetchDevelopmentBySlug(slug);
 
-  if (!dev) return { title: "Empreendimento | Órion" };
+  if (!dev) return { title: "Empreendimento | ORIUM" };
 
   return {
     title: `${dev.name} em ${dev.cityLabel}`,
     description: dev.shortDescription,
     openGraph: {
-      title: `${dev.name} | ${dev.cityLabel} - Órion`,
+      title: `${dev.name} | ${dev.cityLabel} - ORIUM`,
       description: dev.shortDescription,
       images: [
         {

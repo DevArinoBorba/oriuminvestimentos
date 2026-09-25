@@ -180,13 +180,13 @@ export function normalizeImageUrl(url?: string | null): string {
   ) {
     const match = trimmed.match(/storage\/v1\/object\/public\/(.*)/);
     if (match) {
-      return `https://monarqinvest.com.br/supabase/storage/v1/object/public/${match[1]}`;
+      return `https://oriuminvestimentos.com.br/supabase/storage/v1/object/public/${match[1]}`;
     }
   }
 
-  // Se for HTTP para monarqinvest.com.br, força HTTPS
-  if (trimmed.startsWith("http://monarqinvest.com.br")) {
-    return trimmed.replace("http://monarqinvest.com.br", "https://monarqinvest.com.br");
+  // Se for HTTP para oriuminvestimentos.com.br, força HTTPS
+  if (trimmed.startsWith("http://oriuminvestimentos.com.br")) {
+    return trimmed.replace("http://oriuminvestimentos.com.br", "https://oriuminvestimentos.com.br");
   }
 
   return trimmed;
@@ -208,12 +208,12 @@ export function normalizeVideoUrl(url?: string | null): string {
   ) {
     const match = trimmed.match(/storage\/v1\/object\/public\/(.*)/);
     if (match) {
-      return `https://monarqinvest.com.br/supabase/storage/v1/object/public/${match[1]}`;
+      return `https://oriuminvestimentos.com.br/supabase/storage/v1/object/public/${match[1]}`;
     }
   }
 
-  if (trimmed.startsWith("http://monarqinvest.com.br")) {
-    return trimmed.replace("http://monarqinvest.com.br", "https://monarqinvest.com.br");
+  if (trimmed.startsWith("http://oriuminvestimentos.com.br")) {
+    return trimmed.replace("http://oriuminvestimentos.com.br", "https://oriuminvestimentos.com.br");
   }
 
   return trimmed;
@@ -222,7 +222,7 @@ export function normalizeVideoUrl(url?: string | null): string {
 /**
  * Calcula o próximo código disponível para um determinado prefixo garantindo que nunca
  * colida com códigos existentes (mesmo se houver itens deletados ou números fora de ordem).
- * Exemplo: se já existem MRQ-R202, MRQ-R203, MRQ-R204, o próximo retornado será MRQ-R205.
+ * Exemplo: se já existem ORM-R202, ORM-R203, ORM-R204, o próximo retornado será ORM-R205.
  */
 export function getNextSequentialCode(
   items: Array<{ code?: string | null } | any>,

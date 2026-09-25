@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Manrope } from "next/font/google";
+import { Sora, Manrope, Cinzel } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnalyticsScripts } from "@/components/layout/AnalyticsScripts";
 import { fetchAnalyticsSettings } from "@/lib/services/settingsService";
@@ -17,10 +17,16 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://orioninvestimentos.com.br";
 
 export const viewport: Viewport = {
-  themeColor: "#09090c",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -28,8 +34,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ÓRION Investimentos | Litoral SC, Campo Grande & Mato Grosso",
-    template: "%s | ÓRION Investimentos",
+    default: "ORIUM Investimentos | Litoral SC, Campo Grande & Mato Grosso",
+    template: "%s | ORIUM Investimentos",
   },
   description:
     "Curadoria imobiliária de alto padrão em Santa Catarina (Balneário Camboriú, Itapema, Porto Belo), imóveis selecionados em Campo Grande/MS e investimentos rurais de escala no Centro-Oeste.",
@@ -41,24 +47,24 @@ export const metadata: Metadata = {
     "Porto Belo",
     "Campo Grande",
     "fazendas Mato Grosso",
-    "ÓRION Investimentos",
+    "ORIUM Investimentos",
   ],
-  authors: [{ name: "ÓRION Investimentos" }],
-  creator: "ÓRION Investimentos",
+  authors: [{ name: "ORIUM Investimentos" }],
+  creator: "ORIUM Investimentos",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: siteUrl,
-    siteName: "ÓRION Investimentos",
-    title: "ÓRION Investimentos | Alto Padrão & Inteligência Patrimonial",
+    siteName: "ORIUM Investimentos",
+    title: "ORIUM Investimentos | Alto Padrão & Inteligência Patrimonial",
     description:
       "Curadoria imobiliária de alto padrão no litoral de SC, Campo Grande e agronegócio no Centro-Oeste.",
     images: [
       {
-        url: "/brand/orion-logo-horizontal.svg",
+        url: "/brand/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ÓRION Investimentos",
+        alt: "ORIUM Investimentos",
       },
     ],
   },
@@ -88,7 +94,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const analytics = await fetchAnalyticsSettings();
 
   return (
-    <html lang="pt-BR" className={`${sora.variable} ${manrope.variable} h-full antialiased`}>
+    <html lang="pt-BR" className={`${sora.variable} ${manrope.variable} ${cinzel.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <AnalyticsScripts settings={analytics} />
         {children}

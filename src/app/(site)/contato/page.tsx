@@ -32,7 +32,7 @@ export default function ContatoPage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const { config: siteConfig, buildWhatsappUrl } = useSiteConfig();
 
-  const whatsappDirectUrl = buildWhatsappUrl("Olá! Gostaria de falar com um consultor da Órion Investimentos.");
+  const whatsappDirectUrl = buildWhatsappUrl("Olá! Gostaria de falar com um consultor da ORIUM Investimentos.");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +66,7 @@ export default function ContatoPage() {
             Atendimento Personalizado
           </p>
           <h1 className="font-display text-3xl md:text-5xl text-mineral font-normal tracking-tight">
-            Fale com a Órion Investimentos
+            Fale com a ORIUM Investimentos
           </h1>
           <p className="mt-3 text-sm md:text-base text-graphite/70 leading-relaxed">
             <strong>Construímos. Avaliamos. Vendemos. Regularizamos.</strong>

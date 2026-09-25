@@ -44,16 +44,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-graphite/8 bg-offwhite/95 backdrop-blur-md">
       <div className="mx-auto flex h-20 w-full max-w-[1480px] items-center justify-between px-5 md:px-8 lg:px-12">
-        {/* Logo Órion */}
+        {/* Logo ORIUM */}
         <Link
           href="/"
           className="focus-ring shrink-0 flex items-center pr-2 md:pr-4"
-          aria-label="Órion Investimentos - Página Inicial"
+          aria-label="ORIUM Investimentos - Página Inicial"
         >
           <Image
-            src="/brand/orion-logo-horizontal.svg"
-            alt="ÓRION Investimentos"
-            width={210}
+            src="/brand/orium-logo-horizontal.svg"
+            alt="ORIUM Investimentos"
+            width={226}
             height={50}
             priority
             className="h-8 md:h-9 xl:h-10 w-auto object-contain"
@@ -133,7 +133,7 @@ export function Header() {
           <div className="hidden lg:block">
             <Link
               href="/contato"
-              className="focus-ring inline-flex h-9.5 items-center justify-center rounded-xs bg-mineral px-4 text-[11.5px] xl:text-[12px] font-semibold uppercase tracking-[0.08em] text-offwhite hover:bg-mineral-light transition-colors whitespace-nowrap shadow-2xs"
+              className="focus-ring btn-gold h-9.5 px-4 text-[11.5px] xl:text-[12px] font-semibold uppercase tracking-[0.08em] whitespace-nowrap shadow-xs"
             >
               Falar com Especialista
             </Link>

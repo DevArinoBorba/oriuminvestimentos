@@ -8,12 +8,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
 
-export function generateStaticParams() {
-  return mockUrbanProperties.map((p) => ({
-    slug: p.slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -22,7 +16,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const prop = await fetchUrbanPropertyBySlug(slug);
 
-  if (!prop) return { title: "Imóvel | Órion" };
+  if (!prop) return { title: "Imóvel | ORIUM" };
 
   return {
     title: `${prop.title} - ${prop.neighborhood}, Campo Grande`,

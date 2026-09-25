@@ -101,7 +101,7 @@ export function RuralCatalogView({ initialProperties }: Props) {
         <FilterBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
-          searchPlaceholder="Buscar por nome da fazenda, município ou código (ex: MRQ-R201)..."
+          searchPlaceholder="Buscar por nome da fazenda, município ou código (ex: ORM-R201)..."
           selects={[
             {
               id: "filter-state",

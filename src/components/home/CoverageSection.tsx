@@ -31,7 +31,7 @@ export function CoverageSection() {
     <section className="border-y border-graphite/8 bg-offwhite py-24">
       <Container className="flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Atuação Órion"
+          eyebrow="Atuação ORIUM"
           title="Presença estratégica em 3 estados"
           description="Curadoria imobiliária concentrada em praças de alto potencial, do litoral catarinense ao interior produtivo do Centro-Oeste."
         />

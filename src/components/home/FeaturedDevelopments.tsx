@@ -50,7 +50,7 @@ export function FeaturedDevelopments({ banner }: FeaturedDevelopmentsProps) {
 
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
-            eyebrow="Curadoria Órion"
+            eyebrow="Curadoria ORIUM"
             title={banner?.title || "Empreendimentos selecionados no litoral"}
             description={
               banner?.subtitle ||

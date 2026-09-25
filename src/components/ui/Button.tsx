@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline-light";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-terracota text-offwhite hover:bg-terracota-light",
-  secondary: "bg-mineral text-offwhite hover:bg-mineral-light",
-  ghost: "bg-transparent text-graphite hover:bg-graphite/5",
+  primary: "btn-orium text-white shadow-xs hover:shadow-md",
+  secondary: "border border-primary/25 bg-white text-primary hover:bg-primary-light hover:border-primary/40 shadow-2xs font-semibold",
+  ghost: "bg-transparent text-graphite hover:bg-primary/5 hover:text-primary",
   "outline-light":
     "border border-offwhite/40 text-offwhite hover:bg-offwhite/10 backdrop-blur-sm",
 };
