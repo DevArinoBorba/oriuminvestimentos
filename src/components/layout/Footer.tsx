@@ -49,7 +49,7 @@ export function Footer({ config }: FooterProps) {
             alt="ORIUM Imóveis & Investimentos"
             width={200}
             height={44}
-            className="h-9 w-auto"
+            className="h-10 w-auto"
           />
           <p className="text-[13px] leading-relaxed text-graphite/70">{config.tagline}</p>
           {socialLinks.length > 0 ? (
