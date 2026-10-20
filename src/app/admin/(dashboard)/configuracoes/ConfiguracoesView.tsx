@@ -1,15 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Save, CheckCircle2, Globe, Share2, BarChart3, Plus, Trash2 } from "lucide-react";
+import { Save, CheckCircle2, Globe, Share2, BarChart3, Plus, Trash2, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { resolveSocialIcon } from "@/components/ui/SocialIcons";
 import { generateUUID } from "@/lib/utils";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { DEFAULT_ABOUT_SETTINGS, type AboutSectionSettings } from "@/lib/services/settingsService";
 import { saveSettings, type AnalyticsSettingsInput, type SiteConfigSettings } from "./actions";
 
 interface ConfiguracoesViewProps {
   initialSiteConfig: SiteConfigSettings | null;
   initialAnalytics: AnalyticsSettingsInput | null;
+  initialAboutSection: AboutSectionSettings | null;
   initialError: string | null;
 }
 
@@ -32,6 +35,7 @@ const emptyAnalytics: AnalyticsSettingsInput = { gtmId: "", ga4Id: "", metaPixel
 export function ConfiguracoesView({
   initialSiteConfig,
   initialAnalytics,
+  initialAboutSection,
   initialError,
 }: ConfiguracoesViewProps) {
   const [config, setConfig] = useState<SiteConfigSettings>(
@@ -46,6 +50,9 @@ export function ConfiguracoesView({
   );
   const [analytics, setAnalytics] = useState<AnalyticsSettingsInput>(
     initialAnalytics ?? emptyAnalytics
+  );
+  const [aboutSection, setAboutSection] = useState<AboutSectionSettings>(
+    initialAboutSection ?? DEFAULT_ABOUT_SETTINGS
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -88,7 +95,7 @@ export function ConfiguracoesView({
       socialLinks: config.socialLinks.filter((link) => link.label.trim() && link.url.trim()),
     };
 
-    const result = await saveSettings({ siteConfig: cleanedConfig, analytics });
+    const result = await saveSettings({ siteConfig: cleanedConfig, analytics, aboutSection });
 
     setIsSubmitting(false);
     if (result.success) {
@@ -252,7 +259,122 @@ export function ConfiguracoesView({
           </div>
         </div>
 
-        {/* Bloco 2: Redes Sociais */}
+        {/* Bloco 2: Seção Institucional da Home (Sobre a ORIUM) */}
+        <div className="rounded-sm border border-areia/60 bg-white p-6 shadow-xs space-y-4">
+          <h3 className="font-display text-lg text-graphite font-medium border-b border-areia/30 pb-3 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-terracota" />
+            Banner &amp; Seção Institucional (Sobre a ORIUM)
+          </h3>
+          <p className="text-[11px] text-graphite/50 -mt-2">
+            Configure a fotografia, títulos, texto descritivo, pilares institucionais e o botão de chamada exibidos na página inicial.
+          </p>
+
+          <div className="space-y-4">
+            <ImageUpload
+              label="Foto do Banner Institucional"
+              helperText="Foto em alta resolução (aspecto 4:3 recomendado) exibida ao lado da curadoria na página inicial."
+              coverImage={{ url: aboutSection.imageUrl, alt: "Foto Institucional" }}
+              onCoverChange={(img) => setAboutSection({ ...aboutSection, imageUrl: img.url })}
+              allowGallery={false}
+              category="general"
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-graphite mb-1">
+                  Subtítulo / Eyebrow
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ex: Sobre a ORIUM"
+                  value={aboutSection.eyebrow}
+                  onChange={(e) => setAboutSection({ ...aboutSection, eyebrow: e.target.value })}
+                  className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-graphite mb-1">
+                  Título Principal
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ex: Curadoria imobiliária com visão de investimento"
+                  value={aboutSection.title}
+                  onChange={(e) => setAboutSection({ ...aboutSection, title: e.target.value })}
+                  className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-graphite mb-1">
+                Texto Descritivo
+              </label>
+              <textarea
+                rows={4}
+                placeholder="Descrição completa da curadoria e atuação..."
+                value={aboutSection.description}
+                onChange={(e) => setAboutSection({ ...aboutSection, description: e.target.value })}
+                className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite leading-relaxed"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-xs font-medium text-graphite">
+                Pilares em Destaque (3 frases de posicionamento)
+              </label>
+              {[0, 1, 2].map((idx) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <span className="w-5 text-right font-mono text-[11px] text-graphite/40">
+                    {idx + 1}.
+                  </span>
+                  <input
+                    type="text"
+                    value={aboutSection.pillars?.[idx] ?? ""}
+                    onChange={(e) => {
+                      const nextPillars = [...(aboutSection.pillars || ["", "", ""])];
+                      nextPillars[idx] = e.target.value;
+                      setAboutSection({ ...aboutSection, pillars: nextPillars });
+                    }}
+                    placeholder={`Pilar ${idx + 1}`}
+                    className="focus-ring flex-1 rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div>
+                <label className="block text-xs font-medium text-graphite mb-1">
+                  Texto do Botão
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ex: Conhecer a ORIUM"
+                  value={aboutSection.buttonText}
+                  onChange={(e) => setAboutSection({ ...aboutSection, buttonText: e.target.value })}
+                  className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-graphite mb-1">
+                  Link de Destino
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ex: /sobre"
+                  value={aboutSection.buttonLink}
+                  onChange={(e) => setAboutSection({ ...aboutSection, buttonLink: e.target.value })}
+                  className="focus-ring w-full rounded-xs border border-areia/70 bg-offwhite/30 px-3 py-2 text-xs text-graphite"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bloco 3: Redes Sociais */}
         <div className="rounded-sm border border-areia/60 bg-white p-6 shadow-xs space-y-4">
           <h3 className="font-display text-lg text-graphite font-medium border-b border-areia/30 pb-3 flex items-center gap-2">
             <Share2 className="h-4 w-4 text-mineral" />

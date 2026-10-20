@@ -142,3 +142,65 @@ export async function fetchAnalyticsSettings(): Promise<AnalyticsSettings> {
     return EMPTY_ANALYTICS;
   }
 }
+
+export interface AboutSectionSettings {
+  eyebrow: string;
+  title: string;
+  description: string;
+  pillars: string[];
+  buttonText: string;
+  buttonLink: string;
+  imageUrl: string;
+  imageAlt: string;
+}
+
+export const DEFAULT_ABOUT_SETTINGS: AboutSectionSettings = {
+  eyebrow: "Sobre a ORIUM",
+  title: "Curadoria imobiliária com visão de investimento",
+  description:
+    "A ORIUM Investimentos atua com inteligência de mercado e uma abordagem consultiva para conectar clientes a oportunidades imobiliárias criteriosamente selecionadas. Nossa atuação reúne imóveis, empreendimentos, investimentos, avaliação, regularização e propriedades rurais, com presença estratégica entre Santa Catarina, Mato Grosso do Sul e Mato Grosso.",
+  pillars: [
+    "Construímos. Avaliamos. Vendemos. Regularizamos.",
+    "Apoio Jurídico Especializado.",
+    "Inteligência de mercado. Patrimônio que permanece.",
+  ],
+  buttonText: "Conhecer a ORIUM",
+  buttonLink: "/sobre",
+  imageUrl: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1600&auto=format&fit=crop",
+  imageAlt: "Arquitetura contemporânea representando a curadoria ORIUM Investimentos",
+};
+
+export async function fetchAboutSettings(): Promise<AboutSectionSettings> {
+  if (!isSupabaseConfigured()) {
+    return DEFAULT_ABOUT_SETTINGS;
+  }
+
+  try {
+    const supabase = createBrowserSupabaseClient();
+    const { data, error } = await supabase
+      .from("settings")
+      .select("value")
+      .eq("key", "about_section")
+      .maybeSingle();
+
+    if (error || !data || !data.value) {
+      return DEFAULT_ABOUT_SETTINGS;
+    }
+
+    const val = data.value as Partial<AboutSectionSettings>;
+    return {
+      eyebrow: val.eyebrow?.trim() || DEFAULT_ABOUT_SETTINGS.eyebrow,
+      title: val.title?.trim() || DEFAULT_ABOUT_SETTINGS.title,
+      description: val.description?.trim() || DEFAULT_ABOUT_SETTINGS.description,
+      pillars: Array.isArray(val.pillars) && val.pillars.length > 0 ? val.pillars : DEFAULT_ABOUT_SETTINGS.pillars,
+      buttonText: val.buttonText?.trim() || DEFAULT_ABOUT_SETTINGS.buttonText,
+      buttonLink: val.buttonLink?.trim() || DEFAULT_ABOUT_SETTINGS.buttonLink,
+      imageUrl: val.imageUrl?.trim() || DEFAULT_ABOUT_SETTINGS.imageUrl,
+      imageAlt: val.imageAlt?.trim() || DEFAULT_ABOUT_SETTINGS.imageAlt,
+    };
+  } catch (err) {
+    console.error("Erro ao buscar configurações da seção sobre do Supabase:", err);
+    return DEFAULT_ABOUT_SETTINGS;
+  }
+}
+

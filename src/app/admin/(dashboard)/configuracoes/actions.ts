@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { requireStaff } from "@/lib/supabase/require-staff";
-import type { SocialLink } from "@/lib/services/settingsService";
+import type { SocialLink, AboutSectionSettings } from "@/lib/services/settingsService";
 
 export interface SiteConfigSettings {
   name: string;
@@ -28,35 +28,39 @@ export interface AnalyticsSettingsInput {
 export interface GetSettingsResult {
   siteConfig: SiteConfigSettings | null;
   analytics: AnalyticsSettingsInput | null;
+  aboutSection: AboutSectionSettings | null;
   error?: string;
 }
 
 export async function getSettings(): Promise<GetSettingsResult> {
   const staff = await requireStaff();
-  if (!staff) return { siteConfig: null, analytics: null, error: "Não autorizado." };
+  if (!staff) return { siteConfig: null, analytics: null, aboutSection: null, error: "Não autorizado." };
 
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("settings")
     .select("key, value")
-    .in("key", ["site_config", "analytics"]);
+    .in("key", ["site_config", "analytics", "about_section"]);
 
   if (error) {
-    return { siteConfig: null, analytics: null, error: error.message };
+    return { siteConfig: null, analytics: null, aboutSection: null, error: error.message };
   }
 
   const siteConfigRow = data?.find((r) => r.key === "site_config");
   const analyticsRow = data?.find((r) => r.key === "analytics");
+  const aboutSectionRow = data?.find((r) => r.key === "about_section");
 
   return {
     siteConfig: (siteConfigRow?.value as SiteConfigSettings | undefined) ?? null,
     analytics: (analyticsRow?.value as AnalyticsSettingsInput | undefined) ?? null,
+    aboutSection: (aboutSectionRow?.value as AboutSectionSettings | undefined) ?? null,
   };
 }
 
 export interface SaveSettingsInput {
   siteConfig: SiteConfigSettings;
   analytics: AnalyticsSettingsInput;
+  aboutSection?: AboutSectionSettings;
 }
 
 export interface SaveSettingsResult {
@@ -70,19 +74,30 @@ export async function saveSettings(input: SaveSettingsInput): Promise<SaveSettin
 
   const supabase = await createClient();
 
-  const [siteConfigResult, analyticsResult] = await Promise.all([
+  const upserts = [
     supabase
       .from("settings")
       .upsert({ key: "site_config", value: input.siteConfig as unknown as Record<string, unknown> }),
     supabase
       .from("settings")
       .upsert({ key: "analytics", value: input.analytics as unknown as Record<string, unknown> }),
-  ]);
+  ];
 
-  if (siteConfigResult.error || analyticsResult.error) {
+  if (input.aboutSection) {
+    upserts.push(
+      supabase
+        .from("settings")
+        .upsert({ key: "about_section", value: input.aboutSection as unknown as Record<string, unknown> })
+    );
+  }
+
+  const results = await Promise.all(upserts);
+  const failed = results.find((r) => r.error);
+
+  if (failed && failed.error) {
     return {
       success: false,
-      error: siteConfigResult.error?.message ?? analyticsResult.error?.message,
+      error: failed.error.message,
     };
   }
 
@@ -90,3 +105,4 @@ export async function saveSettings(input: SaveSettingsInput): Promise<SaveSettin
   revalidatePath("/", "layout");
   return { success: true };
 }
+

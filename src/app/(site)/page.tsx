@@ -8,12 +8,16 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { EditorialSection } from "@/components/home/EditorialSection";
 import { CTASection } from "@/components/home/CTASection";
 import { fetchActiveBanners } from "@/lib/services/bannerService";
+import { fetchAboutSettings } from "@/lib/services/settingsService";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
-  const banners = await fetchActiveBanners();
+  const [banners, aboutSection] = await Promise.all([
+    fetchActiveBanners(),
+    fetchAboutSettings(),
+  ]);
 
   return (
     <>
@@ -23,7 +27,7 @@ export default async function Home() {
       <CampoGrandeSection banner={banners["campo-grande"]} />
       <RuralSection banner={banners.rural} />
       <CoverageSection />
-      <AboutSection />
+      <AboutSection data={aboutSection} />
       <EditorialSection />
       <CTASection />
     </>
