@@ -9,6 +9,13 @@ export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
   const isLoginPath = request.nextUrl.pathname === LOGIN_PATH;
 
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    if (!isLoginPath) {
+      return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
+    }
+    return response;
+  }
+
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookieOptions: {
       name: SUPABASE_COOKIE_NAME,

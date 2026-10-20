@@ -10,8 +10,8 @@ export async function createClient() {
   const cookieStore = await cookies();
 
   return createServerClient<Database>(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
+    SUPABASE_URL || "https://unconfigured.supabase.co",
+    SUPABASE_ANON_KEY || "unconfigured-anon-key",
     {
       cookieOptions: {
         name: SUPABASE_COOKIE_NAME,

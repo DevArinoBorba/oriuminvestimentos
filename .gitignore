@@ -47,3 +47,4 @@ scripts/askpass.bat
 *.sql
 !supabase/**/*.sql
 !supabase/*.sql
+.claude/

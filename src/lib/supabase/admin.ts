@@ -8,8 +8,8 @@ import type { Database } from "@/types/database";
  * e Route Handlers de confiança.
  */
 export function createAdminClient() {
-  const url = SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || SUPABASE_SERVICE_ROLE_KEY;
+  const url = SUPABASE_URL || "https://unconfigured.supabase.co";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || SUPABASE_SERVICE_ROLE_KEY || "unconfigured-service-key";
 
   return createSupabaseClient<Database>(url, key, {
     auth: { autoRefreshToken: false, persistSession: false },

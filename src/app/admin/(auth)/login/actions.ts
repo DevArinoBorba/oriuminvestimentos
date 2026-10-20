@@ -15,6 +15,11 @@ export async function signIn(_prevState: LoginState, formData: FormData): Promis
     return { error: "Informe e-mail e senha." };
   }
 
+  const { isSupabaseConfigured } = await import("@/lib/supabase/is-configured");
+  if (!isSupabaseConfigured()) {
+    return { error: "Supabase ainda não configurado. Adicione as novas credenciais no arquivo .env.local." };
+  }
+
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 

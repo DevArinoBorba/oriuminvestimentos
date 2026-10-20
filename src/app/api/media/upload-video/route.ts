@@ -41,8 +41,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: uploadError.message }, { status: 400 });
     }
 
-    const publicBase = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://monarqinvest.com.br/supabase";
-    const publicUrl = `${publicBase}/storage/v1/object/public/property-videos/${path}`;
+    const publicBase = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+    const publicUrl = publicBase ? `${publicBase}/storage/v1/object/public/property-videos/${path}` : "";
 
     return NextResponse.json({ success: true, url: publicUrl });
   } catch (err: any) {

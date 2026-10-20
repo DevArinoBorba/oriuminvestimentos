@@ -1,5 +1,5 @@
 -- ===========================================================================
--- MONARQ Imóveis & Investimentos — Schema Completo (Tabelas + RLS + Storage)
+-- ORIUM Investimentos — Schema Completo (Tabelas + RLS + Storage)
 -- Script 100% Idempotente (pode ser executado múltiplas vezes sem erros)
 -- ===========================================================================
 
@@ -577,7 +577,108 @@ drop policy if exists "staff_all_documents" on storage.objects;
 create policy "staff_all_documents" on storage.objects for all using (bucket_id = 'documents' and public.is_staff()) with check (bucket_id = 'documents' and public.is_staff());
 
 -- ---------------------------------------------------------------------------
--- 15. PERMISSÕES DE ACESSO (GRANTS)
+-- 15. BANNERS PROMOCIONAIS
+-- ---------------------------------------------------------------------------
+
+do $$
+begin
+  if not exists (select 1 from pg_type where typname = 'banner_location') then
+    create type public.banner_location as enum ('hero', 'destaque-sc', 'campo-grande', 'rural');
+  end if;
+end $$;
+
+create table if not exists public.banners (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  subtitle text,
+  location public.banner_location not null default 'hero',
+  image_url text,
+  cta_text text,
+  cta_link text,
+  active boolean not null default true,
+  display_order int not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists banners_location_idx on public.banners (location);
+
+drop trigger if exists set_banners_updated_at on public.banners;
+create trigger set_banners_updated_at
+  before update on public.banners
+  for each row execute function public.set_updated_at();
+
+alter table public.banners enable row level security;
+
+drop policy if exists "banners_public_select_active" on public.banners;
+create policy "banners_public_select_active"
+  on public.banners for select
+  using (active = true or public.is_staff());
+
+drop policy if exists "banners_staff_write" on public.banners;
+create policy "banners_staff_write"
+  on public.banners for all
+  using (public.is_staff())
+  with check (public.is_staff());
+
+-- ---------------------------------------------------------------------------
+-- 16. PROPERTY VIDEOS (Vídeos de Anúncios)
+-- ---------------------------------------------------------------------------
+
+create table if not exists public.property_videos (
+  id uuid primary key default gen_random_uuid(),
+  entity_type public.image_entity_type not null,
+  entity_id uuid not null,
+  kind text not null default 'external' check (kind in ('upload', 'external')),
+  url text not null,
+  alt text not null default '',
+  position int not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists property_videos_entity_idx on public.property_videos (entity_type, entity_id);
+
+alter table public.property_videos enable row level security;
+
+drop policy if exists "property_videos_public_select" on public.property_videos;
+create policy "property_videos_public_select"
+  on public.property_videos for select
+  using (
+    public.is_staff()
+    or (entity_type = 'development' and exists (
+      select 1 from public.developments d where d.id = entity_id and d.status = 'published'
+    ))
+    or (entity_type = 'urban_property' and exists (
+      select 1 from public.urban_properties p where p.id = entity_id and p.status = 'published'
+    ))
+    or (entity_type = 'rural_property' and exists (
+      select 1 from public.rural_properties r where r.id = entity_id and r.status = 'published'
+    ))
+  );
+
+drop policy if exists "property_videos_staff_write" on public.property_videos;
+create policy "property_videos_staff_write"
+  on public.property_videos for all
+  using (public.is_staff())
+  with check (public.is_staff());
+
+insert into storage.buckets (id, name, public)
+values ('property-videos', 'property-videos', true)
+on conflict (id) do nothing;
+
+drop policy if exists "public_read_property_videos" on storage.objects;
+create policy "public_read_property_videos"
+  on storage.objects for select
+  using (bucket_id = 'property-videos');
+
+drop policy if exists "staff_write_property_videos" on storage.objects;
+create policy "staff_write_property_videos"
+  on storage.objects for all
+  using (bucket_id = 'property-videos' and public.is_staff())
+  with check (bucket_id = 'property-videos' and public.is_staff());
+
+-- ---------------------------------------------------------------------------
+-- 17. PERMISSÕES DE ACESSO (GRANTS)
 -- ---------------------------------------------------------------------------
 
 grant usage on schema public to postgres, anon, authenticated, service_role;
