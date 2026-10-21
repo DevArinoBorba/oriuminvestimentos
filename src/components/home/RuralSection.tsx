@@ -7,8 +7,9 @@ import { ArrowUpRight, LandPlot } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
-import { formatBRL } from "@/lib/utils";
+import { formatBRL, normalizeImageUrl } from "@/lib/utils";
 import { mockRuralProperties } from "@/lib/mock/rural";
+import { mockImages } from "@/lib/mock/images";
 import { getStoredRuralProperties, saveStoredRuralProperties, useLiveStoredData } from "@/lib/storage";
 import { fetchRuralProperties } from "@/lib/services/propertyService";
 import type { RuralProperty } from "@/types";
@@ -72,8 +73,8 @@ export function RuralSection({ banner }: RuralSectionProps) {
               className="focus-ring group relative flex h-[340px] flex-col justify-end overflow-hidden rounded-sm"
             >
               <Image
-                src={property.coverImage.url}
-                alt={property.coverImage.alt}
+                src={normalizeImageUrl(property.coverImage?.url) || mockImages.ruralLandscape1}
+                alt={property.coverImage?.alt || property.title}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

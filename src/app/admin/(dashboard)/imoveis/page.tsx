@@ -806,8 +806,11 @@ export default function AdminImoveisPage() {
                       <div className="relative h-12 w-16 overflow-hidden rounded-xs bg-areia/40 shrink-0 border border-areia/60">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={normalizeImageUrl(item.coverImage?.url)}
+                          src={normalizeImageUrl(item.coverImage?.url) || "/brand/orium-icone.svg"}
                           alt={item.title}
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = "/brand/orium-icone.svg";
+                          }}
                           className="h-full w-full object-cover"
                         />
                       </div>

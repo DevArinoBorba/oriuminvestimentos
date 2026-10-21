@@ -449,8 +449,11 @@ export default function AdminRuralPage() {
                         {item.coverImage?.url ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
                           <img
-                            src={normalizeImageUrl(item.coverImage.url)}
+                            src={normalizeImageUrl(item.coverImage.url) || "/brand/orium-icone.svg"}
                             alt={item.title}
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = "/brand/orium-icone.svg";
+                            }}
                             className="h-full w-full object-cover"
                           />
                         ) : (

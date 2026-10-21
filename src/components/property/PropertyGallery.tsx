@@ -62,56 +62,60 @@ export function PropertyGallery({ coverImage, gallery, title }: PropertyGalleryP
 
   return (
     <section className="relative my-4" aria-label={`Galeria de fotos de ${title}`}>
-      {/* Grade de Imagens (Desktop: 1 Principal + 2 Laterais | Mobile: 1 Principal) */}
+      {/* Grade de Imagens (Desktop: 1 Principal + 2 Laterais se houver mais de 1 foto) */}
       <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3 md:gap-3">
         {/* Foto Principal */}
         <div
           onClick={() => openLightbox(0)}
-          className="group relative aspect-[16/10] md:aspect-auto md:col-span-2 md:h-[480px] overflow-hidden rounded-xs cursor-pointer bg-areia/40"
+          className={`group relative aspect-[16/10] md:aspect-auto ${
+            allImages.length === 1 ? "md:col-span-3" : "md:col-span-2"
+          } md:h-[480px] overflow-hidden rounded-xs cursor-pointer bg-areia/40`}
         >
           <Image
             src={allImages[0].url}
             alt={allImages[0].alt || title}
             fill
             priority
-            sizes="(min-width: 1024px) 66vw, 100vw"
+            sizes={allImages.length === 1 ? "100vw" : "(min-width: 1024px) 66vw, 100vw"}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-graphite/10 opacity-0 transition-opacity group-hover:opacity-100" />
         </div>
 
-        {/* Miniaturas Laterais (Desktop) */}
-        <div className="hidden md:flex flex-col gap-3 h-[480px]">
-          {allImages.slice(1, 3).map((img, idx) => (
-            <div
-              key={idx}
-              onClick={() => openLightbox(idx + 1)}
-              className="group relative flex-1 overflow-hidden rounded-xs cursor-pointer bg-areia/40"
-            >
-              <Image
-                src={img.url}
-                alt={img.alt || `${title} - Foto ${idx + 2}`}
-                fill
-                sizes="33vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-graphite/10 opacity-0 transition-opacity group-hover:opacity-100" />
-            </div>
-          ))}
+        {/* Miniaturas Laterais (Desktop) - só renderiza se houver 2 ou mais fotos */}
+        {allImages.length > 1 && (
+          <div className="hidden md:flex flex-col gap-3 h-[480px]">
+            {allImages.slice(1, 3).map((img, idx) => (
+              <div
+                key={idx}
+                onClick={() => openLightbox(idx + 1)}
+                className="group relative flex-1 overflow-hidden rounded-xs cursor-pointer bg-areia/40"
+              >
+                <Image
+                  src={img.url}
+                  alt={img.alt || `${title} - Foto ${idx + 2}`}
+                  fill
+                  sizes="33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-graphite/10 opacity-0 transition-opacity group-hover:opacity-100" />
+              </div>
+            ))}
 
-          {/* Se houver apenas 1 imagem lateral no mock, preenche com um bloco elegante */}
-          {allImages.length === 2 && (
-            <div
-              onClick={() => openLightbox(0)}
-              className="flex flex-1 items-center justify-center rounded-xs bg-areia/20 text-mineral/70 text-sm border border-areia/50 cursor-pointer hover:bg-areia/30 transition-colors"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Images className="h-4 w-4" />
-                Explorar visualização completa
-              </span>
-            </div>
-          )}
-        </div>
+            {/* Se houver apenas 1 imagem lateral (total 2 imagens), preenche com um bloco elegante */}
+            {allImages.length === 2 && (
+              <div
+                onClick={() => openLightbox(0)}
+                className="flex flex-1 items-center justify-center rounded-xs bg-areia/20 text-mineral/70 text-sm border border-areia/50 cursor-pointer hover:bg-areia/30 transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Images className="h-4 w-4" />
+                  Explorar visualização completa
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Botão de Ver Todas as Fotos */}
@@ -121,7 +125,7 @@ export function PropertyGallery({ coverImage, gallery, title }: PropertyGalleryP
         className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 rounded-xs bg-white/95 backdrop-blur-md px-4 py-2.5 text-xs font-semibold tracking-wide text-graphite shadow-md hover:bg-white hover:text-mineral transition-all focus-ring"
       >
         <Images className="h-4 w-4 text-mineral" />
-        Ver todas as fotos ({allImages.length})
+        {allImages.length > 1 ? `Ver todas as fotos (${allImages.length})` : "Ampliar foto"}
       </button>
 
       {/* Modal / Lightbox Fullscreen */}

@@ -1,8 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { FavoriteButton } from "./FavoriteButton";
 import { formatBRL, normalizeImageUrl } from "@/lib/utils";
+import { mockImages } from "@/lib/mock/images";
 import type { PropertyBadge, PropertyImage } from "@/types";
 
 export interface PropertyCardSpec {
@@ -34,13 +38,20 @@ export function PropertyCard({
   // Extrai o slug a partir do href (ex: /empreendimentos/porto-belo/essenza-porto-belo -> essenza-porto-belo)
   const slug = href.split("/").pop() || title;
 
+  const initialUrl = normalizeImageUrl(image?.url) || mockImages.livingRoom1;
+  const [imgSrc, setImgSrc] = useState(initialUrl);
+
+  useEffect(() => {
+    setImgSrc(normalizeImageUrl(image?.url) || mockImages.livingRoom1);
+  }, [image?.url]);
+
   const favoriteItem = {
     slug,
     href,
     title,
     location,
     price,
-    image,
+    image: { ...image, url: imgSrc },
     code,
     specsSummary: specs.map((s) => s.label).join(" · "),
   };
@@ -51,11 +62,14 @@ export function PropertyCard({
         <Link href={href} className="focus-ring relative block overflow-hidden">
           <div className="relative aspect-[4/3] w-full overflow-hidden bg-areia/40">
             <Image
-              src={normalizeImageUrl(image.url)}
-              alt={image.alt}
+              src={imgSrc}
+              alt={image?.alt || title}
               fill
               sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              onError={() => {
+                setImgSrc(mockImages.livingRoom1);
+              }}
             />
           </div>
 
