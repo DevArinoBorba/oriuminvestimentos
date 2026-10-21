@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { FacebookIcon, InstagramIcon, resolveSocialIcon } from "@/components/ui/SocialIcons";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon, resolveSocialIcon } from "@/components/ui/SocialIcons";
 import { buildWhatsappUrlFor } from "@/lib/site-config";
 import type { ResolvedSiteConfig } from "@/lib/services/settingsService";
 import { scCities } from "./nav-data";
@@ -114,7 +114,7 @@ export function Footer({ config }: FooterProps) {
               data-analytics-event="whatsapp_click"
               className="focus-ring flex items-center gap-2 text-[14px] text-graphite/80 hover:text-mineral transition-colors"
             >
-              <MessageCircle className="h-4 w-4 text-mineral" />
+              <WhatsAppIcon className="h-4 w-4 text-mineral" />
               {config.whatsappDisplay}
             </a>
           ) : null}

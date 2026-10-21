@@ -73,9 +73,12 @@ export function GenericSocialIcon({ className }: IconProps) {
   );
 }
 
+import { WhatsAppIcon, WhatsappIcon } from "./WhatsAppIcon";
+export { WhatsAppIcon, WhatsappIcon };
+
 /**
  * Detecta o ícone de marca pelo nome digitado no painel (ex: "TikTok",
- * "youtube", "X (Twitter)"). Cai no ícone genérico se não reconhecer.
+ * "youtube", "X (Twitter)", "WhatsApp"). Cai no ícone genérico se não reconhecer.
  */
 export function resolveSocialIcon(label: string) {
   const key = label
@@ -84,6 +87,9 @@ export function resolveSocialIcon(label: string) {
     .replace(/[̀-ͯ]/g, "")
     .trim();
 
+  if (key.includes("whatsapp") || key.includes("whats") || key.includes("wpp") || key.includes("zap")) {
+    return WhatsAppIcon;
+  }
   if (key.includes("tiktok")) return TikTokIcon;
   if (key.includes("youtube")) return YoutubeIcon;
   if (key.includes("linkedin")) return LinkedinIcon;

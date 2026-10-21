@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Heart,
   Trash2,
-  MessageCircle,
   ExternalLink,
   Building2,
   Home,
@@ -15,6 +14,7 @@ import {
   Share2,
   Sparkles,
 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
@@ -73,7 +73,7 @@ export default function FavoritosPage() {
                   rel="noopener noreferrer"
                   className="focus-ring inline-flex items-center gap-2 rounded-xs bg-[#25D366] px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:brightness-105 transition-all shadow-xs"
                 >
-                  <MessageCircle className="h-4 w-4 fill-current" />
+                  <WhatsAppIcon className="h-4 w-4" />
                   Atendimento para Todos
                 </a>
               )}
@@ -168,7 +168,7 @@ export default function FavoritosPage() {
                               rel="noopener noreferrer"
                               className="focus-ring inline-flex items-center justify-center gap-1.5 rounded-xs bg-[#25D366] px-3 py-2 text-xs font-semibold text-white hover:brightness-105 transition-all shadow-xs"
                             >
-                              <MessageCircle className="h-3.5 w-3.5 fill-current" />
+                              <WhatsAppIcon className="h-3.5 w-3.5" />
                               WhatsApp
                             </a>
                           )}

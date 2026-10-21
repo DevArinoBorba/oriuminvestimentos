@@ -3,7 +3,8 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { X, Trash2, Heart, MessageCircle, ArrowRight, Layers } from "lucide-react";
+import { X, Trash2, Heart, ArrowRight, Layers } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { formatBRL } from "@/lib/utils";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
@@ -171,7 +172,7 @@ export function FavoritesDrawer() {
                 rel="noopener noreferrer"
                 className="focus-ring flex w-full items-center justify-center gap-2 rounded-xs bg-[#25D366] px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:brightness-105 transition-all shadow-xs"
               >
-                <MessageCircle className="h-4 w-4 fill-current" />
+                <WhatsAppIcon className="h-4 w-4" />
                 Atendimento WhatsApp para Todos
               </a>
             )}

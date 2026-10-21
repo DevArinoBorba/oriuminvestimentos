@@ -2,7 +2,8 @@
 
 import { useState, useMemo, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Search, MessageCircle, Calendar, Trash2 } from "lucide-react";
+import { Search, Calendar, Trash2 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { deleteLead, updateLeadStatus, type LeadListItem } from "./actions";
 import type { LeadStatusDb, LeadTypeDb } from "@/types/database";
 
@@ -277,7 +278,7 @@ export function LeadsView({ initialLeads, initialError }: LeadsViewProps) {
                             rel="noopener noreferrer"
                             className="focus-ring inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-[#25D366] text-white hover:brightness-105 transition-all font-semibold text-xs shadow-xs"
                           >
-                            <MessageCircle className="h-3.5 w-3.5 fill-current" />
+                            <WhatsAppIcon className="h-3.5 w-3.5" />
                             WhatsApp
                           </a>
                           <button

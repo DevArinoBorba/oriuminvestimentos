@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Save, CheckCircle2, Globe, Share2, BarChart3, Plus, Trash2, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-import { resolveSocialIcon } from "@/components/ui/SocialIcons";
+import { resolveSocialIcon, WhatsAppIcon } from "@/components/ui/SocialIcons";
 import { generateUUID } from "@/lib/utils";
 import { ImageUpload } from "@/components/admin/ImageUpload";
 import { DEFAULT_ABOUT_SETTINGS, type AboutSectionSettings } from "@/lib/services/settingsService";
@@ -180,7 +180,8 @@ export function ConfiguracoesView({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-graphite mb-1">
+              <label className="block text-xs font-medium text-graphite mb-1 flex items-center gap-1.5">
+                <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
                 WhatsApp (Número Completo)
               </label>
               <input
@@ -193,7 +194,8 @@ export function ConfiguracoesView({
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-graphite mb-1">
+              <label className="block text-xs font-medium text-graphite mb-1 flex items-center gap-1.5">
+                <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
                 WhatsApp (Exibição Formatada)
               </label>
               <input

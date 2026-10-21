@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Users, Plus, Search, CheckCircle2, X, Edit2, Trash2, Award } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import {
   createAgent,
   deleteAgent,
@@ -234,7 +235,20 @@ export function CorretoresView({ initialAgents, initialError }: CorretoresViewPr
                     </td>
                     <td className="p-4 text-graphite/70">
                       <div>{ag.email || "—"}</div>
-                      <div className="font-mono text-[11px] text-graphite/50">{ag.phone}</div>
+                      {ag.phone ? (
+                        <a
+                          href={`https://wa.me/55${ag.phone.replace(/\D/g, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[11px] text-graphite/60 hover:text-emerald-600 inline-flex items-center gap-1 transition-colors"
+                          title="Conversar no WhatsApp"
+                        >
+                          <WhatsAppIcon className="h-3 w-3 text-[#25D366] shrink-0" />
+                          {ag.phone}
+                        </a>
+                      ) : (
+                        <div className="font-mono text-[11px] text-graphite/50">—</div>
+                      )}
                     </td>
                     <td className="p-4">
                       <span
@@ -371,7 +385,10 @@ export function CorretoresView({ initialAgents, initialError }: CorretoresViewPr
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-graphite mb-1">Telefone / WhatsApp</label>
+                  <label className="block text-xs font-medium text-graphite mb-1 flex items-center gap-1.5">
+                    <WhatsAppIcon className="h-3 w-3 text-[#25D366]" />
+                    Telefone / WhatsApp
+                  </label>
                   <input
                     type="tel"
                     placeholder="(67) 99999-9999"

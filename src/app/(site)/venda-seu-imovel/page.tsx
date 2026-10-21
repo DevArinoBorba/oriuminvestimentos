@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { mockImages } from "@/lib/mock/images";
 import { submitSellPropertyLead } from "./actions";
 import {
@@ -237,7 +238,8 @@ export default function VendaSeuImovelPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="owner-phone" className="block text-xs font-medium text-graphite mb-1">
+                      <label htmlFor="owner-phone" className="block text-xs font-medium text-graphite mb-1 flex items-center gap-1.5">
+                        <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
                         Telefone / WhatsApp *
                       </label>
                       <input

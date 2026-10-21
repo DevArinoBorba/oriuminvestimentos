@@ -9,10 +9,10 @@ import {
   TrendingUp,
   ArrowUpRight,
   ShieldCheck,
-  MessageCircle,
   Clock,
   Sparkles,
 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { StatCard } from "@/components/admin/StatCard";
 import { isSupabaseConfigured } from "@/lib/supabase/is-configured";
 import { createClient } from "@/lib/supabase/server";
@@ -226,7 +226,7 @@ export default async function AdminDashboardPage() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all font-semibold text-[11px]"
                         >
-                          <MessageCircle className="h-3 w-3" />
+                          <WhatsAppIcon className="h-3 w-3" />
                           WhatsApp
                         </a>
                       </td>

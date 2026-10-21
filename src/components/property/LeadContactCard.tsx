@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Send, CheckCircle2, ShieldCheck } from "lucide-react";
+import { Send, CheckCircle2, ShieldCheck } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { formatBRL } from "@/lib/utils";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { submitPropertyLead, type LeadEntityType } from "@/lib/actions/property-lead";
@@ -93,7 +94,7 @@ export function LeadContactCard({
             rel="noopener noreferrer"
             className="focus-ring group flex w-full items-center justify-center gap-2 rounded-xs bg-[#25D366] px-4 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.99] shadow-sm"
           >
-            <MessageCircle className="h-5 w-5 fill-current" />
+            <WhatsAppIcon className="h-5 w-5" />
             Falar pelo WhatsApp
           </a>
           <p className="mt-2 text-center text-[11px] text-graphite/50">

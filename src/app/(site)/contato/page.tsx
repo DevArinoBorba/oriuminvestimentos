@@ -5,9 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { submitContactLead } from "./actions";
-import { FacebookIcon, InstagramIcon } from "@/components/ui/SocialIcons";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/SocialIcons";
 import {
-  MessageCircle,
   Mail,
   Phone,
   Clock,
@@ -88,7 +87,7 @@ export default function ContatoPage() {
                 {whatsappDirectUrl && (
                   <div className="flex items-start gap-3.5">
                     <div className="rounded-xs bg-[#25D366]/10 p-2.5 text-[#25D366] shrink-0">
-                      <MessageCircle className="h-5 w-5" />
+                      <WhatsAppIcon className="h-5 w-5" />
                     </div>
                     <div>
                       <span className="text-xs text-graphite/60 block">WhatsApp Oficial (MS)</span>
@@ -206,7 +205,7 @@ export default function ContatoPage() {
                 rel="noopener noreferrer"
                 className="focus-ring group flex w-full items-center justify-center gap-2 rounded-xs bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-white transition-all hover:brightness-105 shadow-sm"
               >
-                <MessageCircle className="h-5 w-5 fill-current" />
+                <WhatsAppIcon className="h-5 w-5" />
                 Iniciar Atendimento no WhatsApp
               </a>
             )}

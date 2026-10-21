@@ -48,3 +48,7 @@ scripts/askpass.bat
 !supabase/**/*.sql
 !supabase/*.sql
 .claude/
+.gemini/
+.impeccable/
+.trail/
+opencode.json
