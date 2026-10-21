@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
 import { mockImages } from "@/lib/mock/images";
+import { fetchAboutSettings } from "@/lib/services/settingsService";
+import { normalizeImageUrl } from "@/lib/utils";
 import {
   Building,
   Scale,
@@ -17,7 +19,14 @@ import {
   Users,
 } from "lucide-react";
 
-export default function SobrePage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function SobrePage() {
+  const aboutSettings = await fetchAboutSettings();
+  const heroImage = normalizeImageUrl(aboutSettings.imageUrl || mockImages.modernHouse);
+  const heroImageAlt = aboutSettings.imageAlt || "Sede e arquitetura contemporânea ORIUM";
+
   return (
     <main className="py-8 md:py-16">
       <Container>
@@ -50,10 +59,10 @@ export default function SobrePage() {
             </div>
 
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg bg-areia/40">
                 <Image
-                  src={mockImages.modernHouse}
-                  alt="Sede e arquitetura contemporânea ORIUM"
+                  src={heroImage}
+                  alt={heroImageAlt}
                   fill
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"
